@@ -21,6 +21,9 @@
 
                     <ul class="dropdown-menu" role="menu">
                         <li>
+                            <a href="{{url('ez/member/'.Auth::user()->id.'/edit')}}">Edit Profile</a>
+                        </li>
+                        <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -58,8 +61,7 @@
                               onchange="form.submit()">
                             <div class="col-xs-3 form-group">
                                 <label>Destinasi Kota</label>
-                                <select required class="form-control selectpicker" name="kota" id="destination"
-                                        data-live-search="true">
+                                <select class="form-control" name="kota" id="kota" required>
                                     <option disabled selected>-- Pilih Kota --</option>
                                     @foreach($city as $row)
                                         <option value="{{$row->id}}" <?php if ($row->id == $kota->id) {
@@ -67,7 +69,6 @@
                                         } ?>>{{$row->name}}</option>
                                     @endforeach
                                 </select>
-                                <span class="input-icon"><i class="fa fa-angle-down fa-lg"></i></span>
                             </div>
                             <div class="col-xs-3 form-group">
                                 <button type="submit" class="btn btn-primary btn-block">CARI TOUR <i
@@ -103,7 +104,8 @@
                                                 <h5> {{$row->durasi}} </h5>
                                             </div>
                                             <div class="prom-right">
-                                                <h5> Rp{{$row->harga}} / orang </h5>
+                                                <?php $rupiah = number_format($row->harga, 2, ",", ".");?>
+                                                <h5> Rp{{$rupiah}} / orang </h5>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>

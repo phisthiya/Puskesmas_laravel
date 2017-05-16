@@ -19,18 +19,32 @@ Route::prefix('admin')->group(function () {
     Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
 });
 
+// Socialite login
+Route::get('auth/{provider}', 'Auth\RegisterController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');
+
 Route::prefix('ez')->group(function () {
     Route::get('/', 'EzController@index');
-    Route::get('/member/{user}/edit', 'EzController@edit');
-    Route::put('/member/{user}', 'EzController@update');
+    Route::get('/member/{user}/edit', 'EditController@showEditForm');
+    Route::put('/member/{user}', 'EditController@update');
     Route::post('/contact', 'EzController@contact');
+    Route::get('/{location}/location', 'EzController@location');
     Route::get('/tour', 'EzController@showtour');
     Route::get('/tour/{tour}/detail', 'EzController@showtourdetail');
-    Route::get('/tour/{tour}/form', 'EzController@tourform');
+    Route::get('/tour/{tour}/form', 'EzController@showTourForm');
 
-    Route::get('/tour/{tour}/confirm', function () {
-        return view('ez/confirm');
+    Route::get('/tour/review', 'EzController@showReviewTourForm');
+    Route::get('/tour/payment', function () {
+        return view('ez/tour/payment');
     });
-    Route::get('/tour/confirm', 'EzController@tourconfirm');
-    Route::get('/tour/{tour}/report', 'EzController@tourreport');
+    Route::get('/tour/process', function () {
+        return view('ez/tour/proses');
+    });
+    Route::get('/tour/e-ticket', function () {
+        return view('ez/tour/report');
+    });
+
+    Route::get('/travel', function () {
+        return view('ez/travel/result');
+    });
 });

@@ -21,6 +21,9 @@
 
                     <ul class="dropdown-menu" role="menu">
                         <li>
+                            <a href="{{url('ez/member/'.Auth::user()->id.'/edit')}}">Edit Profile</a>
+                        </li>
+                        <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -57,8 +60,7 @@
                         <form action="/ez/tour" class="" method="get" role="search">
                             <div class="col-xs-3 form-group">
                                 <label>Destinasi Kota</label>
-                                <select required class="form-control selectpicker" name="kota" id="destination"
-                                        data-live-search="true">
+                                <select class="form-control" name="kota" id="kota" required>
                                     <option disabled selected>-- Pilih Kota --</option>
                                     @foreach($city as $row)
                                         <option value="{{$row->id}}" <?php if ($row->id == $tour->city_id) {
@@ -66,7 +68,6 @@
                                         } ?>>{{$row->name}}</option>
                                     @endforeach
                                 </select>
-                                <span class="input-icon"><i class="fa fa-angle-down fa-lg"></i></span>
                             </div>
                             <div class="col-xs-3 form-group">
                                 <button type="submit" class="btn btn-primary btn-block">CARI TOUR <i

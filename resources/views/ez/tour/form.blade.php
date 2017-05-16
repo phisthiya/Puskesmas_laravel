@@ -21,6 +21,9 @@
 
                     <ul class="dropdown-menu" role="menu">
                         <li>
+                            <a href="{{url('ez/member/'.Auth::user()->id.'/edit')}}">Edit Profile</a>
+                        </li>
+                        <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -88,7 +91,7 @@
                     </div>
                 </center>
                 <br>
-                <form class="form-horizontal" role="form" method="get" action="/ez/tour/confirm">
+                <form class="form-horizontal" role="form" method="get" action="/ez/tour/review">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="destination">Destinasi</label>

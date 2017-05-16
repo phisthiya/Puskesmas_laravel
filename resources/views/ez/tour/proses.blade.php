@@ -21,6 +21,9 @@
 
                     <ul class="dropdown-menu" role="menu">
                         <li>
+                            <a href="{{url('ez/member/'.Auth::user()->id.'/edit')}}">Edit Profile</a>
+                        </li>
+                        <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -45,7 +48,7 @@
     <div class="content">
         <div class="promotions">
             <div class="container">
-                <h3 class="tittle">E-Ticket Anda</h3>
+                <h3 class="tittle">Proses </h3>
                 <span>Ez Travel - Tour</span>
                 <center>
                     <div class="container" style="width: 51%">
@@ -72,7 +75,7 @@
                                     <div class="progress-circle"></div>
                                 </div>
                                 <div class="step step05">
-                                    <progress class="progress" value="100" max="100"
+                                    <progress class="progress" value="0" max="100"
                                               aria-describedby="Step 05"></progress>
                                     <div class="progress-circle"></div>
                                 </div>
@@ -88,65 +91,62 @@
                     </div>
                 </center>
                 <br>
-                <div class="w3-container">
-                    <div class="col-md-8">
-                        <h2>Detail Pesanan</h2>
-                        <div class="w3-panel w3-card"><br>
-                            <div class="col-md-12">
-                                <table>
-                                    <tr>
-                                        <td>Nomor Pesanan</td>
-                                        <td>&nbsp;:&nbsp;&nbsp;</td>
-                                        <td><strong>0000001</strong></td>
-                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                        <td>Tanggal Keberangkatan</td>
-                                        <td>&nbsp;:&nbsp;&nbsp;</td>
-                                        <td><strong>YYYY-MM-DD</strong></td>
-                                    </tr>
-                                    @if(Auth::guest())
-                                        <tr>
-                                            <td>Nama Lengkap</td>
-                                            <td>&nbsp;:&nbsp;&nbsp;</td>
-                                            <td><strong></strong></td>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                    @else
-                                        <tr>
-                                            <td>Nama Lengkap</td>
-                                            <td>&nbsp;:&nbsp;&nbsp;</td>
-                                            <td><strong>{{Auth::user()->name}} {{Auth::user()->lastname}}</strong></td>
-                                            <td>&nbsp;</td>
-                                        </tr>
-                                    @endif
-                                    <tr>
-                                        <td>Destinasi</td>
-                                        <td>&nbsp;:&nbsp;&nbsp;</td>
-                                        <td><strong>Surabaya</strong></td>
-                                        <td>&nbsp;</td>
-                                        <td>Paket</td>
-                                        <td>&nbsp;:&nbsp;&nbsp;</td>
-                                        <td><strong>A</strong></td>
-                                    </tr>
-                                </table>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <h2>&nbsp;</h2>
+                <div class="w3-container -align-center center-block">
+                    <div class="col-md-12">
                         <div class="w3-panel w3-card">
-                            <h5 class="text-center">Cetak E-Ticket</h5><br>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-primary">Cetak</button>
-                                <br><br>
-                            </div>
+                            <br><br><br>
+                            <style>
+                                .loader {
+                                    border: 16px solid #f3f3f3;
+                                    border-radius: 50%;
+                                    border-top: 16px solid #3498db;
+                                    width: 120px;
+                                    height: 120px;
+                                    -webkit-animation: spin 2s linear infinite;
+                                    animation: spin 2s linear infinite;
+                                }
+
+                                @-webkit-keyframes spin {
+                                    0% {
+                                        -webkit-transform: rotate(0deg);
+                                    }
+                                    100% {
+                                        -webkit-transform: rotate(360deg);
+                                    }
+                                }
+
+                                @keyframes spin {
+                                    0% {
+                                        transform: rotate(0deg);
+                                    }
+                                    100% {
+                                        transform: rotate(360deg);
+                                    }
+                                }
+                            </style>
+                            <center>
+                                <div class="loader"></div>
+                            </center>
+                            <br><br><br>
+                            <center><p>Mohon tunggu sebentar, pesanan anda sedang diproses</p></center>
+
                         </div>
                     </div>
+
+                    {{--<div class="col-md-8">--}}
+                    {{--<h2>&nbsp;</h2>--}}
+                    {{--<div class="w3-panel w3-card" style="height: 32.3%">--}}
+                    {{--<h4>Lanjut Ke Pembayaran</h4>--}}
+
+                    {{--<div class="text-center">--}}
+                    {{--<button type="button" class="btn btn-primary">Lanjut Ke Pembayaran</button>--}}
+                    {{--<br><br>--}}
+                    {{--</div>--}}
+                    {{--</div>--}}
+                    {{--</div>--}}
+
+
                 </div>
-                <h1>&nbsp;</h1>
-                <h1>&nbsp;</h1>
-                <h1>&nbsp;</h1>
-                <h5>&nbsp;</h5>
             </div>
         </div>
     </div>

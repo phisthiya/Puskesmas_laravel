@@ -17,6 +17,12 @@
     <link href="/css/datepicker.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="/css/datepicker-bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <link rel="stylesheet" href="/css/chocolat.css" type="text/css">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
+    <link href="/bootstrap-social-gh-pages/bootstrap-social.css" rel="stylesheet">
+    <link href="/bootstrap-social-gh-pages/assets/css/font-awesome.css" rel="stylesheet">
+    <link href="/bootstrap-social-gh-pages/assets/css/docs.css" rel="stylesheet">
 
     <!--//theme-style-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>

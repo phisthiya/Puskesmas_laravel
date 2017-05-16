@@ -99,9 +99,6 @@
                                                                data-toggle="tab">TOUR</a></li>
                     <li role="presentation"><a href="#flight" aria-controls="profile" role="tab"
                                                data-toggle="tab">TRAVEL</a></li>
-                    <li role="presentation"><a href="#hotel" aria-controls="messages" role="tab"
-                                               data-toggle="tab">HOTEL</a>
-                    </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -109,14 +106,12 @@
                         <form action="ez/tour" class="" method="get" role="search">
                             <div class="col-xs-3 form-group">
                                 <label>Destinasi Kota</label>
-                                <select class="form-control selectpicker" name="kota" id="kota"
-                                        data-live-search="true" required>
-                                    <option disabled selected>-- Pilih Kota --</option>
+                                <select class="form-control" name="kota" required>
+                                    <option value="" selected disabled>-- Pilih Kota --</option>
                                     @foreach($city as $row)
                                         <option value="{{$row->id}}">{{$row->name}}</option>
                                     @endforeach
                                 </select>
-                                <span class="input-icon"><i class="fa fa-angle-down fa-lg"></i></span>
                             </div>
                             <div class="col-xs-3 form-group">
                                 <button type="submit" class="btn btn-primary btn-block">
@@ -197,41 +192,6 @@
                             </div>
                         </form>
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="hotel">
-                        <form action="cari-hotel.php" name="hoteldestination_searchForm"
-                              id="hoteldestination_searchForm"
-                              method="get" onchange="form.submit()">
-                            <div class="col-xs-3 form-group">
-                                <label>Destinasi Kota</label>
-                                <select class="form-control selectpicker" name="kota" id="destination"
-                                        data-live-search="true">
-                                    <option disabled selected>-- Pilih Kota --</option>
-                                    <?php $kota = (isset($_GET['kota']) ? strtolower($_GET['kota']) : NULL); ?>
-                                    <option value="bali" <?php if ($kota == 'bali') {
-                                        echo 'selected';
-                                    } ?>>Bali
-                                    </option>
-                                    <option value="malang" <?php if ($kota == 'malang') {
-                                        echo 'selected';
-                                    } ?>>Malang
-                                    </option>
-                                    <option value="surabaya" <?php if ($kota == 'surabaya') {
-                                        echo 'selected';
-                                    } ?>>Surabaya
-                                    </option>
-                                    <option value="yogyakarta" <?php if ($kota == 'yogyakarta') {
-                                        echo 'selected';
-                                    } ?>>Yogyakarta
-                                    </option>
-                                </select>
-                                <span class="input-icon"><i class="fa fa-angle-down fa-lg"></i></span>
-                            </div>
-                            <div class="col-xs-3 form-group ">
-                                <button type="submit" class="btn btn-primary btn-block">CARI HOTEL<i
-                                            class="fa fa-chevron-right"></i></button>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
@@ -260,7 +220,8 @@
                                         <h5> {{$row->durasi}} </h5>
                                     </div>
                                     <div class="prom-right">
-                                        <h5> Rp{{$row->harga}} / orang </h5>
+                                        <?php $rupiah = number_format($row->harga, 2, ",", ".");?>
+                                        <h5> Rp{{$rupiah}} / orang </h5>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -525,15 +486,39 @@
             </div>
             <div class="google-map">
                 <div id="map" style="width:1140px;height:260px"></div>
+                @foreach($location as $row)
+                    <a href="ez/{{$row->id}}/location">
+                        <h4 align="right"><i class="fa fa-hand-o-right">&nbsp;<em>Get Our Location&hellip;</em></i></h4>
+                    </a>
+                @endforeach
                 <script>
                     function myMap() {
                         var mapCanvas = document.getElementById("map");
-                        var myCenter = new google.maps.LatLng(-7.2931279, 112.7594555);
-                        var mapOptions = {center: myCenter, zoom: 15};
+                        var myCenter = new google.maps.LatLng(-7.290050, 112.720152);
+                        var mapOptions = {center: myCenter, zoom: 18};
                         var map = new google.maps.Map(mapCanvas, mapOptions);
+                        var contentString = '<div id="content">' +
+                            '<div id="siteNotice">' +
+                            '</div>' +
+                            '<h1 id="firstHeading" class="firstHeading">Ez Travel</h1>' +
+                            '<div id="bodyContent">' +
+                            '<p><b>Ez Travel</b>, is your ' +
+                            'Vacation Package Provider ' +
+                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aut dignissimos ea est, impedit incidunt, laboriosam maxime molestias numquam odio officiis. Ab aut dignissimos ea est, impedit incidunt.' +
+                            'Visit our site: <a href="/">https://eztravel.co/</a></p>' +
+                            '</div>' +
+                            '</div>';
+
+                        var infowindow = new google.maps.InfoWindow({
+                            content: contentString
+                        });
                         var marker = new google.maps.Marker({
                             position: myCenter,
+                            title: 'Ez Travel - Head Office',
                             animation: google.maps.Animation.BOUNCE
+                        });
+                        marker.addListener('click', function () {
+                            infowindow.open(map, marker);
                         });
                         marker.setMap(map);
                     }
