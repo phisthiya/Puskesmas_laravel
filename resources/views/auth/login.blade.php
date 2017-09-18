@@ -1,13 +1,11 @@
-@extends('layouts.masterlogreg')
-
-@section('title', 'Ez Travel - Login')
+@extends('layouts.app')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-primary">
-                    <div class="panel-heading"><strong>Login</strong></div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">User Login</div>
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
@@ -61,38 +59,6 @@
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         Forgot Your Password?
                                     </a>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-auto">
-                                    <div style="height: 25px; border-bottom: 1px solid rgba(0,0,0,0.1); text-align: center">
-                                        <span style="font-size: 28px; background-color: #FFFFFF; padding: 0 10px;">or</span>
-                                    </div>
-                                    <br>
-                                    <div class="col-sm-3">
-                                        <a href="{{ url('/auth/facebook') }}"
-                                           class="btn btn-block btn-social btn-facebook">
-                                            <span class="fa fa-facebook"></span> Facebook
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <a href="{{ url('/auth/twitter') }}"
-                                           class="btn btn-block btn-social btn-twitter">
-                                            <span class="fa fa-twitter"></span> Twitter
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <a href="{{ url('/auth/google') }}"
-                                           class="btn btn-block btn-social btn-google">
-                                            <span class="fa fa-google-plus"></span> Google+
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <a href="{{ url('/auth/github') }}"
-                                           class="btn btn-block btn-social btn-github">
-                                            <span class="fa fa-github"></span> Github
-                                        </a>
-                                    </div>
                                 </div>
                             </div>
                         </form>

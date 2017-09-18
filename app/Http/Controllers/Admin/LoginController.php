@@ -41,12 +41,12 @@ class LoginController extends Controller
         return redirect()->back()->withInput($request->only('email', 'remember'));
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         $this->guard('admin')->logout();
-        /*$request->session('admin')->flush();
-        $request->session('admin')->regenerate();*/
-        return redirect('/');
+        $request->session('admin')->flush();
+        $request->session('admin')->regenerate();
+        return redirect('admin');
     }
 
     protected function guard()

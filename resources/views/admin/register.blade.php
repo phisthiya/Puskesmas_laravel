@@ -1,4 +1,4 @@
-@extends('layouts.masterlogregadmin')
+@extends('layouts.appadmin')
 
 @section('title', 'Ez Travel - Register')
 

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -30,5 +30,10 @@ class User extends Authenticatable
     function socialProviders()
     {
         return $this->hasMany(SocialProvider::class);
+    }
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
     }
 }
